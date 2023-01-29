@@ -107,16 +107,3 @@ Contribution directions go here.
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-
-
-#
-#
-# attribute_name = the name for the masked attribute. For example
-#   a name of :roles will create methods for the role_mask backing attribute
-#
-# masks = an array of symbols for the mask values. Order matters.
-#   %i[admin sysadmin]
-#
-# With those examples the follow methods & scopes will be created:
-#
