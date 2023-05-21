@@ -80,6 +80,12 @@ def add_sysadmin!
 # Add remove_MASK! methods. Updates the backing field with the MASK value in the name.
 def remove_admin!
 def remove_sysadmin!
+
+# Add a MASK from the mask_attribute_name
+def add_role(mask)
+
+# Remove a MASK from the mask_attribute_name
+def remove_role(mask)
 ```
 
 ## Installation

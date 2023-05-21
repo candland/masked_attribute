@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     masked_attribute (0.1.0)
-      rails (>= 7.0.4.2)
+      rails (>= 7.0)
 
 GEM
   remote: https://rubygems.org/

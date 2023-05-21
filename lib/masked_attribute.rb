@@ -39,6 +39,9 @@ module MaskedAttribute
     # def roles=(array of masks)
     # def roles -> array of masks
     #
+    # def add_role(ROLE)
+    # def remove_role(ROLE)
+    #
     # Class::ROLES = masks
     # Class::INDEXED_ROLES = {mask_value => mask, ...}
     def masked_attribute attribute_name, masks
@@ -100,6 +103,22 @@ module MaskedAttribute
         masks.reject do |r|
           ((__send__(mask_attribute_name).to_i || 0) & 2**masks.index(r)).zero?
         end
+      end
+
+      # Add a MASK from the mask_attribute_name
+      # params: value = the mask to add
+      define_method("add_#{attribute_name.singularize}") do |value|
+        value_int = 2**masks.index(value)
+        has = __send__(mask_attribute_name)
+        __send__("#{mask_attribute_name}=", has | value_int)
+      end
+
+      # Remove a MASK from the mask_attribute_name
+      # params: value = the mask to remove
+      define_method("remove_#{attribute_name.singularize}") do |value|
+        value_int = 2**masks.index(value)
+        has = __send__(mask_attribute_name)
+        __send__("#{mask_attribute_name}=", has & ~value_int)
       end
     end
   end

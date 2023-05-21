@@ -77,4 +77,20 @@ class MaskedAttributeTest < ActiveSupport::TestCase
     assert_equal 1, User.admins.count
     assert_equal 1, User.with_roles(:admin, :sysadmin).count
   end
+
+  test "should add role" do
+    user.add_role(:admin)
+    assert user.save
+    assert user.admin?
+  end
+
+  test "should remove role" do
+    user.add_admin!
+    assert user.reload
+    assert user.admin?
+
+    user.remove_role(:admin)
+    assert user.save
+    refute user.admin?
+  end
 end
