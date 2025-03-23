@@ -58,13 +58,13 @@ module MaskedAttribute
       # Add a scope with_ATTRIBUTE_NAME, which returns records that match ALL given masks
       self.class.define_method(:"with_#{attribute_name}") do |*values|
         ok_mask = mask_from(masks, values)
-        where("role_mask & ? = ?", ok_mask, ok_mask)
+        where("#{mask_attribute_name} & ? = ?", ok_mask, ok_mask)
       end
 
       # Add a scope with_any_ATTRIBUTE_NAME, which returns records that match ANY given masks
       self.class.define_method(:"with_any_#{attribute_name}") do |*values|
         ok_mask = mask_from(masks, values)
-        where("role_mask & ? != 0", ok_mask)
+        where("#{mask_attribute_name} & ? != 0", ok_mask)
       end
 
       masks.each do |value|
